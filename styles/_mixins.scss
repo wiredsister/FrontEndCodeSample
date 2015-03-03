@@ -1,0 +1,62 @@
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin clickable() {
+	cursor: pointer;
+	text-decoration: none;
+	outline: none;
+}
+
+@mixin display-font() {
+	font-weight: lighter;
+}
+
+@mixin transition($transition-property, $transition-time, $method) {
+    -webkit-transition: $transition-property $transition-time $method;
+    -moz-transition: $transition-property $transition-time $method;
+    -ms-transition: $transition-property $transition-time $method;
+    -o-transition: $transition-property $transition-time $method;
+    transition: $transition-property $transition-time $method;
+}
+
+@mixin circle() {
+	@include border-radius(50%);
+	height: 1.5em;
+	width: 1.5em;
+}
+
+@mixin active-green() {
+	border: 1px solid $bright-green;
+	background: $bright-green; /* Old browsers */
+	background: -moz-linear-gradient(left,  hsl(120,41%,51%) 0%, hsl(120,54%,58%) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(0%,hsl(120,41%,51%)), color-stop(100%,hsl(120,54%,58%))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  hsl(120,41%,51%) 0%,hsl(120,54%,58%) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  hsl(120,41%,51%) 0%,hsl(120,54%,58%) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  hsl(120,41%,51%) 0%,hsl(120,54%,58%) 100%); /* IE10+ */
+	background: linear-gradient(to right,  hsl(120,41%,51%) 0%,hsl(120,54%,58%) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4db54d', endColorstr='#5cce5c',GradientType=1 ); /* IE6-9 */
+}
+
+@mixin button($bg-color, $color) {
+	font-size: $larger-font;
+	font-weight: bold;
+	background-color: $bg-color;
+	color: $color;
+	@include border-radius(4px);
+	@include transition(background-color, .3s, linear);
+
+	&:hover {
+		//lighten($bg-color, 10%);
+	}
+}
+
+@mixin centered() {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}

@@ -1,0 +1,38 @@
+.bar {
+	height: 0.9em;
+	display: block;
+	@include active-green;
+	@include border-radius(3px);
+}
+
+.progress-bar {
+	margin: 0 0 0 2em;
+	width: 50%;
+	background-color: darken($dove-gray, 15%);
+	@include border-radius(3px);
+}
+
+.owner-box + .progress-bar {
+	width: 15%;
+}
+
+.-in-progress {
+	color: $bright-green;
+}
+
+.from {
+	float: left;
+	margin: 0.2em -1.4em;
+}
+
+.to {
+	float: right;
+	margin: -1.1em -1.5em 0 0;
+}
+
+.ratio {
+	float: right;
+	margin: -0.8em -2.5em;
+	font-size: $larger-font;
+	font-weight: lighter;
+}

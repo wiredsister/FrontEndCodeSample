@@ -1,0 +1,82 @@
+._exit_ {
+	float: right;
+	height: 1em;
+	width: 1em;
+	fill: darken($pigeon-gray, 10%);
+	margin: -2.2em 0;
+	@include clickable;
+
+	&:hover {
+		fill: darken($pigeon-gray, 20%);
+	}
+}
+
+._content-editable_ {
+	padding-bottom: 3em;
+
+	&[contentEditable="true"] {
+		outline: none;
+		padding: .5em .5em 3em;
+		background-color: $dove-gray;
+	}
+}
+
+._edit_ {
+	margin: -3.5em 1em 0 0;
+	padding: .3em .5em;
+	@include button($business-blue, $white);
+	@include clickable;
+
+	.-closed + & { display: none; }
+}
+
+._save_ {
+	display: none;
+	@extend ._edit_;
+
+	&.-is-editing {
+		display: block;
+
+		& + ._edit_ {
+			display: none;
+		}
+	}
+}
+
+._plus-minus_ {
+	vertical-align: middle;
+	height: 1.2em;
+	width: 1.2em;
+	display: inline-block;
+	@include clickable;
+
+	&:hover {
+		circle { 
+			fill: darken($gandalf-gray, 10%); 
+		}
+	}
+
+	circle { fill: $gandalf-gray; }
+
+	._minus_, ._plus_ { fill: $white; }
+
+	._plus_ { display: none; }
+
+	.-closed & {
+		._plus_ { display: block; }
+		._minus_ {display: none; }
+	}
+}
+
+._open-close_ {
+	overflow: hidden;
+
+	h4 + & {
+		padding-bottom: 2em;
+	}
+
+	&.-closed {
+		height: 0;
+		width: 0;
+	}
+}

@@ -1,0 +1,52 @@
+.table-wrap {
+	background-color: $white;
+	border: 1px solid $pigeon-gray;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	padding: 1em 1em 6em;
+}
+
+table {
+	border-bottom: 1px solid $pigeon-gray;
+	color: $gandalf-gray;
+	font-weight: bold;
+
+	&, thead, tr {
+		width: 100%;
+	}
+}
+
+thead, tbody {
+	padding: 0.5em .3em;
+	display: block;
+	box-sizing: border-box;
+}
+
+tbody {
+	padding-bottom: 1.5em;
+}
+
+tbody tr {
+	padding: 1em 1em 0 0.5em;
+	box-sizing: border-box;
+	display: block;
+}
+
+thead {
+	background-color: $gandalf-gray;
+	color: $white;
+}
+
+th {
+	width: 25%;
+	font-weight: 400;
+	text-align: left;
+	padding: .7em;
+	overflow: hidden;
+}
+
+td {
+	width: 25%;
+	display: table-cell;
+	overflow: hidden;
+}

@@ -1,0 +1,9 @@
+.circle {
+	@include circle;
+	border: 1px solid $pigeon-gray;
+	background-color: $dove-gray;
+
+	&.-active {
+		@include active-green;
+	}
+}

@@ -1,0 +1,55 @@
+._gray-background_ {
+	position: fixed;
+	background-color: $dove-gray;
+	overflow: hidden;
+	@include centered;
+}
+
+.project-card {
+	background-color: $white;
+	color: $gandalf-gray;
+	border: 1px solid $dove-gray;
+	height: 75%;
+	width: 80%;
+	position: absolute;
+	font-weight: bold;
+	@include centered;
+	margin: auto;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	padding: 1.5em 1.5em 2.5em;
+
+	p {
+		padding-left: 2em;
+		clear: both;
+	}
+	._arrow_ {
+		opacity: .6; 
+		fill: $wm-orange;
+		height: 2.5em;
+		width: 2.5em;
+		float: right;
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		margin: auto -4em;
+		@include clickable;
+
+		&:hover {
+			opacity: 1;
+		}
+	}
+}
+
+.owner-box {
+	padding-left: 2em;
+	padding-bottom: 1em;
+}
+
+.date-range {
+	display: inline-block;
+	float: right;
+	margin-right: 1em;
+}
+

@@ -1,0 +1,123 @@
+<!Doctype HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Front End Challenge for Work Market</title>
+		<link rel="stylesheet" href="styles/normalize.css" type="text/css"/>
+		<link rel="stylesheet" href="styles/main.css" type="text/css"/>
+	</head>
+	<body>
+		<!-- As a general note, all classes with underscores around the names are meant to be 
+	manipulated with JavaScript. This is a personal neurosis to prevent logic/style mishaps -->
+
+	<div class="table-wrap _table_">
+		<header>
+			<h3>Projects Index</h3>
+			<div class="filters">
+				<div class="_view-all_ -filter -active">View All</div>
+				<div class="_active_ -filter">Active</div>
+				<div class="_inactive_ -filter">Inactive</div>
+			</div>
+			<button>New Project</button>
+		</header>
+		<table>
+			<thead>
+				<tr>
+					<th>Project Name</th>
+					<th>Owner:</th>
+					<th>Due:</th>
+					<th>Steps</th>
+					<th>Active:</th>
+				</tr>
+			</thead>
+			<tbody class="_filteredBody_"></tbody>
+		</table>
+	</div>
+
+	<!--le scripts & templates-->
+	<script type="text/template" id="tableRowTemplate">
+		<% rows.each(function (row) { %>
+			<tr>
+				<td><a href="javascript:void(0)" data-id="<%= row.get('id') %>"  class="_modal-opener_"> <%= row.get("name")%> </a></td>
+				<td> <%= _.values(row.get("owner"))[0] %> </td>
+				<td> <%= row.get("pretty_end_date") %> </td>
+				<td>
+					<div class="progress-bar">
+						<small class="from"><%= row.get("current_step") %></small>
+						<span style="width: <%= row.get("progressBarWidth") %>%;" class="bar"></span>
+						<small class="to <% if (row.get("active")) { print('-in-progress')} %>"><%= row.get("total_steps") %></small>
+					</div>
+				</td>
+				<td><div class="circle <% if (row.get("active")) { print('-active')} %>"></div></td>
+			</tr>
+		<% });%>
+	</script>
+
+	<script type="text/template" id="detailViewTemplate">
+			<div class="_gray-background_">
+				<div class="project-card">
+					<h2><%= project.get('name') %></h2>
+					<svg class="_exit_" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+						<path  d="M8,10.3l5.5,5.5c0.3,0.3,0.7,0.3,0.9,0l1.4-1.4c0.3-0.3,0.3-0.7,0-0.9L10.3,8l5.5-5.5
+							c0.3-0.3,0.3-0.7,0-0.9l-1.4-1.4c-0.3-0.3-0.7-0.3-0.9,0L8,5.7L2.5,0.2c-0.3-0.3-0.7-0.3-0.9,0L0.2,1.6c-0.3,0.3-0.3,0.7,0,0.9 L5.7,8l-5.5,5.5c-0.3,0.3-0.3,0.7,0,0.9l1.4,1.4c0.3,0.3,0.7,0.3,0.9,0L8,10.3z"/>
+					</svg>
+					<div class="project-details-container">
+						<h4>
+							<svg version="1.1" class="_plus-minus_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+								<circle cx="8" cy="8" r="8"/>
+								<path class="_minus_" d="M11.7,9C11.9,9,12,8.8,12,8.6l0-1.2C12,7.2,11.9,7,11.7,7L4.3,7C4.1,7,4,7.2,4,7.4l0,1.2
+													C4,8.8,4.1,9,4.3,9L11.7,9z"/>
+								<g class="_plus_">
+									<path d="M11.7,9C11.9,9,12,8.8,12,8.6l0-1.2C12,7.2,11.9,7,11.7,7L4.3,7C4.1,7,4,7.2,4,7.4l0,1.2C4,8.8,4.1,9,4.3,9 L11.7,9z"/>
+									<path d="M7,11.7C7,11.9,7.2,12,7.4,12l1.2,0C8.8,12,9,11.9,9,11.7l0-7.4C9,4.1,8.8,4,8.6,4L7.4,4C7.2,4,7,4.1,7,4.3 L7,11.7z"/>
+								</g>
+							</svg>
+							Project Details
+							<p class="date-range"><%= project.get('dateRange') %></p>
+						</h4>
+						<p class="_content-editable_ _open-close_"><%= project.get('description') %></p>
+						<button class="_edit_">Edit</button>
+						<button class="_save_">Save</button>
+						<hr/>
+						<h4>
+							<svg version="1.1" class="_plus-minus_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+								<circle cx="8" cy="8" r="8"/>
+								<path class="_minus_" d="M11.7,9C11.9,9,12,8.8,12,8.6l0-1.2C12,7.2,11.9,7,11.7,7L4.3,7C4.1,7,4,7.2,4,7.4l0,1.2
+													C4,8.8,4.1,9,4.3,9L11.7,9z"/>
+								<g class="_plus_">
+									<path d="M11.7,9C11.9,9,12,8.8,12,8.6l0-1.2C12,7.2,11.9,7,11.7,7L4.3,7C4.1,7,4,7.2,4,7.4l0,1.2C4,8.8,4.1,9,4.3,9 L11.7,9z"/>
+									<path d="M7,11.7C7,11.9,7.2,12,7.4,12l1.2,0C8.8,12,9,11.9,9,11.7l0-7.4C9,4.1,8.8,4,8.6,4L7.4,4C7.2,4,7,4.1,7,4.3 L7,11.7z"/>
+								</g>
+							</svg>
+							Project Owner
+						</h4>
+						<div class="_open-close_">
+							<div class="owner-box">
+								<a href="JavaScript:void(0);">
+									<img class="" alt="An image of <%= _.values(project.get("owner"))[0] %>" src="<%= _.values(project.get("owner"))[1] %>"/>
+									<%= _.values(project.get("owner"))[0] %>
+								</a> 
+							</div>
+							<div class="progress-bar">
+								<span style="width: <%= project.get("progressBarWidth") %>%;" class="bar"></span>
+								<p class="ratio"><span <% if (project.get("active")) { print('class="-in-progress"')} %>><%= project.get("current_step") %></span>/<%= project.get("total_steps") %></p>
+							</div>
+						</div>
+
+						<svg version="1.1" class="_arrow_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 42 42" enable-background="new 0 0 42 42" xml:space="preserve">
+							<path d="M14,40c-0.8,0-1.5-0.3-2.1-0.9c-1.2-1.2-1.2-3.1,0-4.2L25.8,21L11.9,7.1
+							c-1.2-1.2-1.2-3.1,0-4.2c1.2-1.2,3.1-1.2,4.2,0l15,15c1.7,1.7,1.7,4.5,0,6.2l-15,15C15.5,39.7,14.8,40,14,40z"/>
+						</svg>
+					</div>
+					<hr/>
+				</div>
+			</div>
+	</script>
+
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/underscore.js"></script>
+	<script type="text/javascript" src="js/backbone.js"></script>
+	<script type="text/javascript" src="js/challenge.js"></script>
+	</body>
+</html>
