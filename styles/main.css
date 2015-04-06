@@ -323,7 +323,8 @@ hr {
   border: 1px solid #cccccc;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
-  padding: 1em 1em 6em; }
+  padding: 1em 1em 6em;
+  position: relative; }
 
 table {
   border-bottom: 1px solid #cccccc;
