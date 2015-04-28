@@ -1,4 +1,4 @@
-// Work Market Front-End Submission
+// Front-End Sample
 // Coded by Gina Maini 
 // Weekend of the 27th, February 2015
 // Frameworks & Libraries used: Backbone.js, jQuery.js
@@ -96,7 +96,6 @@ var ProjectDetailsView = Backbone.View.extend({
 
 	initialize: function () {
 		this.render();
-		console.log(this.events);
 	}, 
 
 	render: function () {
